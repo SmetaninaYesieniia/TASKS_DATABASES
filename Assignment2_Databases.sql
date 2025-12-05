@@ -42,7 +42,7 @@ USE intl_exchange_db;
 
 EXPLAIN ANALYZE
 WITH filtered_enrollments AS (
-  SELECT e.program_id
+  SELECT /*+ INDEX(e idx_enroll_program_status) */ e.program_id
   FROM enrollments e
   WHERE e.start_date >= '2023-01-01'
     AND e.end_date <= '2023-12-31'
